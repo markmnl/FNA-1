@@ -20,9 +20,40 @@ namespace Microsoft.Xna.Framework
 {
 	internal static class FNAPlatform
 	{
-		#region Static Constructor
+        #region Static Constructor
 
-		static FNAPlatform()
+#if NO_AVI
+        static FNAPlatform()
+        {
+            CreateWindow = FakePlatform.CreateWindow;
+            DisposeWindow = FakePlatform.DisposeWindow;
+            BeforeInitialize = FakePlatform.BeforeInit;
+            RunLoop = FakePlatform.RunLoop;
+            CreateGLDevice = FakePlatform.CreateGLDevice;
+            CreateALDevice = FakePlatform.CreateALDevice;
+            SetPresentationInterval = FakePlatform.SetPresentationInterval;
+            GetGraphicsAdapters = FakePlatform.GetGraphicsAdapters;
+            GetKeyFromScancode = FakePlatform.GetKeyFromScancode;
+            StartTextInput = FakePlatform.StartTextInput;
+            StopTextInput = FakePlatform.StopTextInput;
+            GetMouseState = FakePlatform.GetMouseState;
+            SetMousePosition = FakePlatform.SetMousePosition;
+            OnIsMouseVisibleChanged = FakePlatform.OnIsMouseVisibleChanged;
+            GetGamePadCapabilities = FakePlatform.GetGamePadCapabilities;
+            GetGamePadState = FakePlatform.GetGamePadState;
+            SetGamePadVibration = FakePlatform.SetGamePadVibration;
+            GetGamePadGUID = FakePlatform.GetGamePadGUID;
+            SetGamePadLightBar = FakePlatform.SetGamePadLightBar;
+            GetStorageRoot = FakePlatform.GetStorageRoot;
+            IsStoragePathConnected = FakePlatform.IsStoragePathConnected;
+            ShowRuntimeError = FakePlatform.ShowRuntimeError;
+            TextureDataFromStream = FakePlatform.TextureDataFromStream;
+            SavePNG = FakePlatform.SavePNG;
+
+            Log = Console.WriteLine;
+        }
+#else
+        static FNAPlatform()
 		{
 			/* I suspect you may have an urge to put an #if in here for new
 			 * FNAPlatform implementations.
@@ -66,12 +97,13 @@ namespace Microsoft.Xna.Framework
 			AppDomain.CurrentDomain.ProcessExit += SDL2_FNAPlatform.ProgramExit;
 			SDL2_FNAPlatform.ProgramInit();
 		}
+#endif
 
-		#endregion
+        #endregion
 
-		#region Public Static Methods
+        #region Public Static Methods
 
-		public static void UnhookLogger()
+        public static void UnhookLogger()
 		{
 			Log = Console.WriteLine;
 		}
@@ -186,6 +218,6 @@ namespace Microsoft.Xna.Framework
 		);
 		public static readonly SavePNGFunc SavePNG;
 
-		#endregion
+#endregion
 	}
 }
