@@ -143,7 +143,11 @@ namespace Microsoft.Xna.Framework.Graphics
 				graphicsDevice,
 				spriteEffectCode
 			);
-			spriteMatrixTransform = spriteEffect.Parameters["MatrixTransform"];
+
+            if (Game.NoAVI)
+                return;
+
+            spriteMatrixTransform = spriteEffect.Parameters["MatrixTransform"];
 			spriteEffectPass = spriteEffect.CurrentTechnique.Passes[0];
 
 			beginCalled = false;
@@ -243,7 +247,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			Effect effect,
 			Matrix transformationMatrix
 		) {
-			if (beginCalled)
+            if (Game.NoAVI)
+                return;
+
+            if (beginCalled)
 			{
 				throw new InvalidOperationException(
 					"Begin has been called before calling End" +
@@ -276,7 +283,10 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public void End()
 		{
-			if (!beginCalled)
+            if (Game.NoAVI)
+                return;
+
+            if (!beginCalled)
 			{
 				throw new InvalidOperationException(
 					"End was called, but Begin has not yet" +
@@ -302,7 +312,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			Vector2 position,
 			Color color
 		) {
-			CheckBegin("Draw");
+            if (Game.NoAVI)
+                return;
+
+            CheckBegin("Draw");
 			PushSprite(
 				texture,
 				null,
@@ -327,7 +340,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			Rectangle? sourceRectangle,
 			Color color
 		) {
-			CheckBegin("Draw");
+            if (Game.NoAVI)
+                return;
+
+            CheckBegin("Draw");
 			PushSprite(
 				texture,
 				sourceRectangle,
@@ -357,7 +373,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			SpriteEffects effects,
 			float layerDepth
 		) {
-			CheckBegin("Draw");
+            if (Game.NoAVI)
+                return;
+
+            CheckBegin("Draw");
 			PushSprite(
 				texture,
 				sourceRectangle,
@@ -387,7 +406,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			SpriteEffects effects,
 			float layerDepth
 		) {
-			CheckBegin("Draw");
+            if (Game.NoAVI)
+                return;
+
+            CheckBegin("Draw");
 			PushSprite(
 				texture,
 				sourceRectangle,
@@ -411,7 +433,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			Rectangle destinationRectangle,
 			Color color
 		) {
-			CheckBegin("Draw");
+            if (Game.NoAVI)
+                return;
+
+            CheckBegin("Draw");
 			PushSprite(
 				texture,
 				null,
@@ -436,7 +461,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			Rectangle? sourceRectangle,
 			Color color
 		) {
-			CheckBegin("Draw");
+            if (Game.NoAVI)
+                return;
+
+            CheckBegin("Draw");
 			PushSprite(
 				texture,
 				sourceRectangle,
@@ -465,7 +493,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			SpriteEffects effects,
 			float layerDepth
 		) {
-			CheckBegin("Draw");
+            if (Game.NoAVI)
+                return;
+
+            CheckBegin("Draw");
 			PushSprite(
 				texture,
 				sourceRectangle,
@@ -494,7 +525,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			Vector2 position,
 			Color color
 		) {
-			if (text == null)
+            if (Game.NoAVI)
+                return;
+
+            if (text == null)
 			{
 				throw new ArgumentNullException("text");
 			}
@@ -522,7 +556,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			SpriteEffects effects,
 			float layerDepth
 		) {
-			if (text == null)
+            if (Game.NoAVI)
+                return;
+
+            if (text == null)
 			{
 				throw new ArgumentNullException("text");
 			}
@@ -550,12 +587,15 @@ namespace Microsoft.Xna.Framework.Graphics
 			SpriteEffects effects,
 			float layerDepth
 		) {
-			/* FIXME: This method is a duplicate of DrawString(string)!
+            if (Game.NoAVI)
+                return;
+
+            /* FIXME: This method is a duplicate of DrawString(string)!
 			 * The only difference is how we iterate through the StringBuilder.
 			 * We don't use ToString() since it generates garbage.
 			 * -flibit
 			 */
-			CheckBegin("DrawString");
+            CheckBegin("DrawString");
 			if (text == null)
 			{
 				throw new ArgumentNullException("text");
@@ -669,7 +709,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			Vector2 position,
 			Color color
 		) {
-			DrawString(
+            DrawString(
 				spriteFont,
 				text,
 				position,
@@ -717,11 +757,14 @@ namespace Microsoft.Xna.Framework.Graphics
 			SpriteEffects effects,
 			float layerDepth
 		) {
-			/* FIXME: This method is a duplicate of DrawString(StringBuilder)!
+            if (Game.NoAVI)
+                return;
+
+            /* FIXME: This method is a duplicate of DrawString(StringBuilder)!
 			 * The only difference is how we iterate through the string.
 			 * -flibit
 			 */
-			CheckBegin("DrawString");
+            CheckBegin("DrawString");
 			if (text == null)
 			{
 				throw new ArgumentNullException("text");

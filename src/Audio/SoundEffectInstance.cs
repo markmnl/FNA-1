@@ -247,6 +247,9 @@ namespace Microsoft.Xna.Framework.Audio
 
 		public virtual void Play()
 		{
+            if (Game.NoAVI)
+                return;
+
 			if (State != SoundState.Stopped)
 			{
 				return;

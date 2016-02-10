@@ -257,6 +257,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			{
 				throw new ArgumentNullException("data");
 			}
+            if (Game.NoAVI)
+            {
+                return;
+            }
 			if ((startIndex + elementCount > data.Length) || elementCount <= 0)
 			{
 				throw new InvalidOperationException(

@@ -207,6 +207,9 @@ namespace Microsoft.Xna.Framework.Audio
 
 		internal void Play(bool isManaged)
 		{
+            if (Game.NoAVI)
+                return;
+
 			if (State != SoundState.Stopped)
 			{
 				return; // No-op if we're already playing.

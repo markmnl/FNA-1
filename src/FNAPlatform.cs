@@ -21,83 +21,68 @@ namespace Microsoft.Xna.Framework
 	internal static class FNAPlatform
 	{
         #region Static Constructor
-
-#if NO_AVI
-        static FNAPlatform()
-        {
-            CreateWindow = FakePlatform.CreateWindow;
-            DisposeWindow = FakePlatform.DisposeWindow;
-            BeforeInitialize = FakePlatform.BeforeInit;
-            RunLoop = FakePlatform.RunLoop;
-            CreateGLDevice = FakePlatform.CreateGLDevice;
-            CreateALDevice = FakePlatform.CreateALDevice;
-            SetPresentationInterval = FakePlatform.SetPresentationInterval;
-            GetGraphicsAdapters = FakePlatform.GetGraphicsAdapters;
-            GetKeyFromScancode = FakePlatform.GetKeyFromScancode;
-            StartTextInput = FakePlatform.StartTextInput;
-            StopTextInput = FakePlatform.StopTextInput;
-            GetMouseState = FakePlatform.GetMouseState;
-            SetMousePosition = FakePlatform.SetMousePosition;
-            OnIsMouseVisibleChanged = FakePlatform.OnIsMouseVisibleChanged;
-            GetGamePadCapabilities = FakePlatform.GetGamePadCapabilities;
-            GetGamePadState = FakePlatform.GetGamePadState;
-            SetGamePadVibration = FakePlatform.SetGamePadVibration;
-            GetGamePadGUID = FakePlatform.GetGamePadGUID;
-            SetGamePadLightBar = FakePlatform.SetGamePadLightBar;
-            GetStorageRoot = FakePlatform.GetStorageRoot;
-            IsStoragePathConnected = FakePlatform.IsStoragePathConnected;
-            ShowRuntimeError = FakePlatform.ShowRuntimeError;
-            TextureDataFromStream = FakePlatform.TextureDataFromStream;
-            SavePNG = FakePlatform.SavePNG;
-
-            Log = Console.WriteLine;
-        }
-#else
+        
         static FNAPlatform()
 		{
-			/* I suspect you may have an urge to put an #if in here for new
-			 * FNAPlatform implementations.
-			 *
-			 * DON'T.
-			 *
-			 * Determine this at runtime, or load dynamically.
-			 * No amount of whining will get me to budge on this.
-			 * -flibit
-			 */
-
-			// Environment.GetEnvironmentVariable("FNA_PLATFORM_BACKEND");
-
-			CreateWindow =			SDL2_FNAPlatform.CreateWindow;
-			DisposeWindow =			SDL2_FNAPlatform.DisposeWindow;
-			BeforeInitialize =		SDL2_FNAPlatform.BeforeInitialize;
-			RunLoop =			SDL2_FNAPlatform.RunLoop;
-			CreateGLDevice =		SDL2_FNAPlatform.CreateGLDevice;
-			CreateALDevice =		SDL2_FNAPlatform.CreateALDevice;
-			SetPresentationInterval =	SDL2_FNAPlatform.SetPresentationInterval;
-			GetGraphicsAdapters =		SDL2_FNAPlatform.GetGraphicsAdapters;
-			GetKeyFromScancode =		SDL2_KeyboardUtil.GetKeyFromScancode;
-			StartTextInput =		SDL2.SDL.SDL_StartTextInput;
-			StopTextInput =			SDL2.SDL.SDL_StopTextInput;
-			GetMouseState =			SDL2_FNAPlatform.GetMouseState;
-			SetMousePosition =		SDL2.SDL.SDL_WarpMouseInWindow;
-			OnIsMouseVisibleChanged =	SDL2_FNAPlatform.OnIsMouseVisibleChanged;
-			GetGamePadCapabilities =	SDL2_FNAPlatform.GetGamePadCapabilities;
-			GetGamePadState =		SDL2_FNAPlatform.GetGamePadState;
-			SetGamePadVibration =		SDL2_FNAPlatform.SetGamePadVibration;
-			GetGamePadGUID =		SDL2_FNAPlatform.GetGamePadGUID;
-			SetGamePadLightBar =		SDL2_FNAPlatform.SetGamePadLightBar;
-			GetStorageRoot =		SDL2_FNAPlatform.GetStorageRoot;
-			IsStoragePathConnected =	SDL2_FNAPlatform.IsStoragePathConnected;
-			ShowRuntimeError =		SDL2_FNAPlatform.ShowRuntimeError;
-			TextureDataFromStream =		SDL2_FNAPlatform.TextureDataFromStream;
-			SavePNG =			SDL2_FNAPlatform.SavePNG;
+            if (Game.NoAVI)
+            {
+                CreateWindow = FakePlatform.CreateWindow;
+                DisposeWindow = FakePlatform.DisposeWindow;
+                BeforeInitialize = FakePlatform.BeforeInit;
+                RunLoop = FakePlatform.RunLoop;
+                CreateGLDevice = FakePlatform.CreateGLDevice;
+                CreateALDevice = FakePlatform.CreateALDevice;
+                SetPresentationInterval = FakePlatform.SetPresentationInterval;
+                GetGraphicsAdapters = FakePlatform.GetGraphicsAdapters;
+                GetKeyFromScancode = FakePlatform.GetKeyFromScancode;
+                StartTextInput = FakePlatform.StartTextInput;
+                StopTextInput = FakePlatform.StopTextInput;
+                GetMouseState = FakePlatform.GetMouseState;
+                SetMousePosition = FakePlatform.SetMousePosition;
+                OnIsMouseVisibleChanged = FakePlatform.OnIsMouseVisibleChanged;
+                GetGamePadCapabilities = FakePlatform.GetGamePadCapabilities;
+                GetGamePadState = FakePlatform.GetGamePadState;
+                SetGamePadVibration = FakePlatform.SetGamePadVibration;
+                GetGamePadGUID = FakePlatform.GetGamePadGUID;
+                SetGamePadLightBar = FakePlatform.SetGamePadLightBar;
+                GetStorageRoot = FakePlatform.GetStorageRoot;
+                IsStoragePathConnected = FakePlatform.IsStoragePathConnected;
+                ShowRuntimeError = FakePlatform.ShowRuntimeError;
+                TextureDataFromStream = FakePlatform.TextureDataFromStream;
+                SavePNG = FakePlatform.SavePNG;
+            }
+            else
+            {
+                CreateWindow = SDL2_FNAPlatform.CreateWindow;
+                DisposeWindow = SDL2_FNAPlatform.DisposeWindow;
+                BeforeInitialize = SDL2_FNAPlatform.BeforeInitialize;
+                RunLoop = SDL2_FNAPlatform.RunLoop;
+                CreateGLDevice = SDL2_FNAPlatform.CreateGLDevice;
+                CreateALDevice = SDL2_FNAPlatform.CreateALDevice;
+                SetPresentationInterval = SDL2_FNAPlatform.SetPresentationInterval;
+                GetGraphicsAdapters = SDL2_FNAPlatform.GetGraphicsAdapters;
+                GetKeyFromScancode = SDL2_KeyboardUtil.GetKeyFromScancode;
+                StartTextInput = SDL2.SDL.SDL_StartTextInput;
+                StopTextInput = SDL2.SDL.SDL_StopTextInput;
+                GetMouseState = SDL2_FNAPlatform.GetMouseState;
+                SetMousePosition = SDL2.SDL.SDL_WarpMouseInWindow;
+                OnIsMouseVisibleChanged = SDL2_FNAPlatform.OnIsMouseVisibleChanged;
+                GetGamePadCapabilities = SDL2_FNAPlatform.GetGamePadCapabilities;
+                GetGamePadState = SDL2_FNAPlatform.GetGamePadState;
+                SetGamePadVibration = SDL2_FNAPlatform.SetGamePadVibration;
+                GetGamePadGUID = SDL2_FNAPlatform.GetGamePadGUID;
+                SetGamePadLightBar = SDL2_FNAPlatform.SetGamePadLightBar;
+                GetStorageRoot = SDL2_FNAPlatform.GetStorageRoot;
+                IsStoragePathConnected = SDL2_FNAPlatform.IsStoragePathConnected;
+                ShowRuntimeError = SDL2_FNAPlatform.ShowRuntimeError;
+                TextureDataFromStream = SDL2_FNAPlatform.TextureDataFromStream;
+                SavePNG = SDL2_FNAPlatform.SavePNG;
+                AppDomain.CurrentDomain.ProcessExit += SDL2_FNAPlatform.ProgramExit;
+                SDL2_FNAPlatform.ProgramInit();
+            }
 
 			Log = Console.WriteLine;
-
-			AppDomain.CurrentDomain.ProcessExit += SDL2_FNAPlatform.ProgramExit;
-			SDL2_FNAPlatform.ProgramInit();
 		}
-#endif
 
         #endregion
 

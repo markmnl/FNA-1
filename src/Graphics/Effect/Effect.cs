@@ -243,9 +243,12 @@ namespace Microsoft.Xna.Framework.Graphics
 		public Effect(GraphicsDevice graphicsDevice, byte[] effectCode)
 		{
 			GraphicsDevice = graphicsDevice;
+            
+            if (Game.NoAVI)
+                return;
 
-			// Send the blob to the GLDevice to be parsed/compiled
-			glEffect = graphicsDevice.GLDevice.CreateEffect(effectCode);
+            // Send the blob to the GLDevice to be parsed/compiled
+            glEffect = graphicsDevice.GLDevice.CreateEffect(effectCode);
 
 			// This is where it gets ugly...
 			INTERNAL_parseEffectStruct();
@@ -268,6 +271,9 @@ namespace Microsoft.Xna.Framework.Graphics
 		protected Effect(Effect cloneSource)
 		{
 			GraphicsDevice = cloneSource.GraphicsDevice;
+
+            if (Game.NoAVI)
+                return;
 
 			// Send the parsed data to be cloned and recompiled by MojoShader
 			glEffect = GraphicsDevice.GLDevice.CloneEffect(

@@ -15,7 +15,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;NO_AVI</DefineConstants>
+    <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -220,6 +220,8 @@
     <Compile Include="src\Graphics\ModelMeshPartCollection.cs" />
     <Compile Include="src\Graphics\NoSuitableGraphicsDeviceException.cs" />
     <Compile Include="src\Graphics\OcclusionQuery.cs" />
+    <Compile Include="src\Graphics\OpenGLDevice.cs" />
+    <Compile Include="src\Graphics\OpenGLDevice_GL.cs" />
     <Compile Include="src\Graphics\PackedVector\Alpha8.cs" />
     <Compile Include="src\Graphics\PackedVector\Bgr565.cs" />
     <Compile Include="src\Graphics\PackedVector\Bgra4444.cs" />
@@ -336,6 +338,9 @@
     <Compile Include="src\Quaternion.cs" />
     <Compile Include="src\Ray.cs" />
     <Compile Include="src\Rectangle.cs" />
+    <Compile Include="src\SDL2\SDL2_FNAPlatform.cs" />
+    <Compile Include="src\SDL2\SDL2_GameWindow.cs" />
+    <Compile Include="src\SDL2\SDL2_KeyboardUtil.cs" />
     <Compile Include="src\Storage\StorageContainer.cs" />
     <Compile Include="src\Storage\StorageDevice.cs" />
     <Compile Include="src\Storage\StorageDeviceNotConnectedException.cs" />
@@ -345,6 +350,9 @@
     <Compile Include="src\Vector2.cs" />
     <Compile Include="src\Vector3.cs" />
     <Compile Include="src\Vector4.cs" />
+    <Compile Include="lib\SDL2-CS\src\SDL2.cs" />
+    <Compile Include="lib\SDL2-CS\src\SDL2_image.cs" />
+    <Compile Include="lib\SDL2-CS\src\LPUtf8StrMarshaler.cs" />
     <Compile Include="lib\OpenAL-CS\src\ALC10.cs" />
     <Compile Include="lib\OpenAL-CS\src\ALC11.cs" />
     <Compile Include="lib\OpenAL-CS\src\AL10.cs" />

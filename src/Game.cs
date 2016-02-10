@@ -44,6 +44,8 @@ namespace Microsoft.Xna.Framework
 {
 	public class Game : IDisposable
 	{
+        public static bool NoAVI = false;
+
 		#region Public Properties
 
 		public LaunchParameters LaunchParameters
@@ -276,8 +278,9 @@ namespace Microsoft.Xna.Framework
 
 		#region Public Constructors
 
-		public Game()
+		public Game(bool noAvi = false)
 		{
+            NoAVI = noAvi;
 			Instance = this;
 
 			AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;

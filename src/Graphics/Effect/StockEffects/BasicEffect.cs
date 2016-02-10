@@ -147,7 +147,12 @@ namespace Microsoft.Xna.Framework.Graphics
         public Vector3 SpecularColor
         {
             get { return specularColorParam.GetValueVector3(); }
-            set { specularColorParam.SetValue(value); }
+            set
+            {
+                if (Game.NoAVI)
+                    return;
+                specularColorParam.SetValue(value);
+            }
         }
 
 
@@ -157,7 +162,12 @@ namespace Microsoft.Xna.Framework.Graphics
         public float SpecularPower
         {
             get { return specularPowerParam.GetValueSingle(); }
-            set { specularPowerParam.SetValue(value); }
+            set
+            {
+                if (Game.NoAVI)
+                    return;
+                specularPowerParam.SetValue(value);
+            }
         }
 
 
@@ -327,7 +337,12 @@ namespace Microsoft.Xna.Framework.Graphics
         public Texture2D Texture
         {
             get { return textureParam.GetValueTexture2D(); }
-            set { textureParam.SetValue(value); }
+            set
+            {
+                if (Game.NoAVI)
+                    return;
+                textureParam.SetValue(value);
+            }
         }
 
 
@@ -360,6 +375,9 @@ namespace Microsoft.Xna.Framework.Graphics
         public BasicEffect(GraphicsDevice device)
             : base(device, Resources.BasicEffect)
         {
+            if (Game.NoAVI)
+                return;
+
             CacheEffectParameters(null);
 
             DirectionalLight0.Enabled = true;
@@ -375,6 +393,9 @@ namespace Microsoft.Xna.Framework.Graphics
         protected BasicEffect(BasicEffect cloneSource)
             : base(cloneSource)
         {
+            if (Game.NoAVI)
+                return;
+
             CacheEffectParameters(cloneSource);
 
             lightingEnabled = cloneSource.lightingEnabled;

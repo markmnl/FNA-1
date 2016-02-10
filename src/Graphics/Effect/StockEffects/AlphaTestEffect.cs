@@ -302,6 +302,9 @@ namespace Microsoft.Xna.Framework.Graphics
         /// </summary>
         void CacheEffectParameters()
         {
+            if (Game.NoAVI)
+                return;
+
             textureParam        = Parameters["Texture"];
             diffuseColorParam   = Parameters["DiffuseColor"];
             alphaTestParam      = Parameters["AlphaTest"];

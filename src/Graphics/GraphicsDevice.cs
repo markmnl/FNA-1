@@ -597,8 +597,11 @@ namespace Microsoft.Xna.Framework.Graphics
 				throw new ArgumentNullException("presentationParameters");
 			}
 
-			// We're about to reset, let the application know.
-			if (DeviceResetting != null)
+            if (Game.NoAVI)
+                return;
+
+            // We're about to reset, let the application know.
+            if (DeviceResetting != null)
 			{
 				DeviceResetting(this, EventArgs.Empty);
 			}
@@ -682,7 +685,10 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public void Clear(Color color)
 		{
-			Clear(
+            if (Game.NoAVI)
+                return;
+
+            Clear(
 				ClearOptions.Target | ClearOptions.DepthBuffer | ClearOptions.Stencil,
 				color.ToVector4(),
 				Viewport.MaxDepth,
@@ -692,7 +698,10 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public void Clear(ClearOptions options, Color color, float depth, int stencil)
 		{
-			Clear(
+            if (Game.NoAVI)
+                return;
+
+            Clear(
 				options,
 				color.ToVector4(),
 				depth,
@@ -702,7 +711,10 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public void Clear(ClearOptions options, Vector4 color, float depth, int stencil)
 		{
-			DepthFormat dsFormat;
+            if (Game.NoAVI)
+                return;
+
+            DepthFormat dsFormat;
 			if (RenderTargetCount == 0)
 			{
 				/* FIXME: PresentationParameters.DepthStencilFormat is probably
@@ -1034,7 +1046,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			int startIndex,
 			int primitiveCount
 		) {
-			ApplyState();
+            if (Game.NoAVI)
+                return;
+
+            ApplyState();
 
 			// Set up the vertex buffers
 			GLDevice.ApplyVertexAttributes(
@@ -1065,8 +1080,11 @@ namespace Microsoft.Xna.Framework.Graphics
 			int primitiveCount,
 			int instanceCount
 		) {
-			// If this device doesn't have the support, just explode now before it's too late.
-			if (!GLDevice.SupportsHardwareInstancing)
+            if (Game.NoAVI)
+                return;
+
+            // If this device doesn't have the support, just explode now before it's too late.
+            if (!GLDevice.SupportsHardwareInstancing)
 			{
 				throw new NoSuitableGraphicsDeviceException("Your hardware does not support hardware instancing!");
 			}
@@ -1103,7 +1121,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			int vertexStart,
 			int primitiveCount
 		) {
-			ApplyState();
+            if (Game.NoAVI)
+                return;
+
+            ApplyState();
 
 			// Set up the vertex buffers
 			GLDevice.ApplyVertexAttributes(
@@ -1134,7 +1155,11 @@ namespace Microsoft.Xna.Framework.Graphics
 			int indexOffset,
 			int primitiveCount
 		) where T : struct, IVertexType {
-			ApplyState();
+
+            if (Game.NoAVI)
+                return;
+
+            ApplyState();
 
 			// Pin the buffers.
 			GCHandle vbHandle = GCHandle.Alloc(vertexData, GCHandleType.Pinned);
@@ -1177,7 +1202,11 @@ namespace Microsoft.Xna.Framework.Graphics
 			int primitiveCount,
 			VertexDeclaration vertexDeclaration
 		) where T : struct {
-			ApplyState();
+
+            if (Game.NoAVI)
+                return;
+
+            ApplyState();
 
 			// Pin the buffers.
 			GCHandle vbHandle = GCHandle.Alloc(vertexData, GCHandleType.Pinned);
@@ -1218,7 +1247,11 @@ namespace Microsoft.Xna.Framework.Graphics
 			int indexOffset,
 			int primitiveCount
 		) where T : struct, IVertexType {
-			ApplyState();
+
+            if (Game.NoAVI)
+                return;
+
+            ApplyState();
 
 			// Pin the buffers.
 			GCHandle vbHandle = GCHandle.Alloc(vertexData, GCHandleType.Pinned);
@@ -1261,7 +1294,11 @@ namespace Microsoft.Xna.Framework.Graphics
 			int primitiveCount,
 			VertexDeclaration vertexDeclaration
 		) where T : struct, IVertexType {
-			ApplyState();
+
+            if (Game.NoAVI)
+                return;
+
+            ApplyState();
 
 			// Pin the buffers.
 			GCHandle vbHandle = GCHandle.Alloc(vertexData, GCHandleType.Pinned);
@@ -1303,7 +1340,11 @@ namespace Microsoft.Xna.Framework.Graphics
 			int vertexOffset,
 			int primitiveCount
 		) where T : struct, IVertexType {
-			ApplyState();
+
+            if (Game.NoAVI)
+                return;
+
+            ApplyState();
 
 			// Pin the buffers.
 			GCHandle vbHandle = GCHandle.Alloc(vertexData, GCHandleType.Pinned);
